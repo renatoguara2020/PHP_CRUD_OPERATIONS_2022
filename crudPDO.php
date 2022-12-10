@@ -1,14 +1,17 @@
 <?php
 $servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDBPDO";
+$username = "root";
+$password = "";
+$dbname = "my_db";
 
-try {
+$firstname = "RENATO ALVES SOARES";
+$lastname = "SOARES";
+$email = "renatoguara2020@gmail.com";
+
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $sql = "INSERT INTO MyGuests (firstname, lastname, email)VALUES (':firstname', ':lastname', ':email')";
+  $sql = 'INSERT INTO usuarios (id, firstname, lastname, email)VALUES (:firstname, :lastname, :email)';
   $stmt->bindParam(':firstname', $firstname);
   $stmt->bindParam(':lastname', $lastname);
   $stmt->bindParam(':email', $email);
@@ -17,12 +20,11 @@ try {
   echo "New record created successfully";
 
   
-  while($row = $result->fetchAll(PDO::FETCH_ASSOC)) { 
-       echo "First Name". $row["firstname"];
+  while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) { 
+       echo "First Name". $row["firstname"] . "<br>";
+       echo "Last Name". $row["lastname"] . "<br>";
+       echo "Email". $row["email"] . "<br>";
   }
-} catch(PDOException $e) {
-  echo $sql . "<br>" . $e->getMessage();
-}
 
-$conn = null;
+
 ?>
