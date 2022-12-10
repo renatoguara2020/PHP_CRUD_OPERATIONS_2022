@@ -15,9 +15,11 @@ try {
   // use exec() because no results are returned
   $conn->exec($sql);
   echo "New record created successfully";
-  $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
   
-  
+  while($row = $result->fetchAll(PDO::FETCH_ASSOC)) { 
+       echo "First Name". $row["firstname"];
+  }
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();
 }
